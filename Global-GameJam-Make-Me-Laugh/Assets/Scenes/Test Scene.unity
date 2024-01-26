@@ -507,12 +507,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2108641318}
-  - component: {fileID: 2108641320}
+  - component: {fileID: 2108641322}
   - component: {fileID: 2108641321}
   - component: {fileID: 2108641317}
   - component: {fileID: 2108641316}
   - component: {fileID: 2108641315}
   - component: {fileID: 2108641319}
+  - component: {fileID: 2108641320}
   m_Layer: 0
   m_Name: Player Object Test
   m_TagString: Untagged
@@ -601,14 +602,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108641313}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 0.78, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1241970897}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2108641319
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -643,7 +644,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2108641313}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 118359f8d9489e94d95bd34196cbc435, type: 3}
   m_Name: 
@@ -681,8 +682,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2108641320}
-        m_TargetAssemblyTypeName: scrPlayerMovement, Assembly-CSharp
+      - m_Target: {fileID: 2108641322}
+        m_TargetAssemblyTypeName: ScrPlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -756,6 +757,21 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2108641322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108641313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eace2888515ba4b4293b82056f607b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRigidBody: {fileID: 2108641319}
+  _movementSpeed: 0
+  _maxSpeed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

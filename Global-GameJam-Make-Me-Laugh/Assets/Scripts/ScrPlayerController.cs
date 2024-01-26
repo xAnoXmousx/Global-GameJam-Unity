@@ -42,9 +42,6 @@ public class ScrPlayerController : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0, _playerRotation, 0);
 
 
-
-
-
     }
 
     private void calculateDegrees()
@@ -69,7 +66,7 @@ public class ScrPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        +
     }
 
 }
