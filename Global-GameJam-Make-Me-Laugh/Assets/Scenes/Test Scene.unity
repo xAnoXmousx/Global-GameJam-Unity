@@ -752,6 +752,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0cef849e-5e53-432c-acb4-02510fd34fa1
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2108641322}
+        m_TargetAssemblyTypeName: ScrPlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b628855c-e8f2-4feb-ba58-fb5f6bcced96
+    m_ActionName: Player/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -770,8 +786,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerRigidBody: {fileID: 2108641319}
-  _movementSpeed: 0
-  _maxSpeed: 0
+  _floatingFactor: 0
+  _floatStrength: 0
+  _clampedFloatHeight: 0
+  _movementSpeed: 2.3
+  _maxSpeed: 5
+  _jumpStrength: 0
+  _maxJumpHeight: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
