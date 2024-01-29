@@ -1,60 +1,65 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ScrPlayerController : MonoBehaviour
 {
-
+    // GameObject Component
     [SerializeField] Rigidbody _playerRigidBody;
 
-
-    [Header("Collision Float")]
+    // Used to float the rigid body and avoid ground collision
+    [Header("Floating Body")]
     [SerializeField] float _floatingFactor;
     [SerializeField] float _floatStrength;
     [SerializeField] float _clampedFloatHeight;
 
+    // Used for controller maps to rotate Player Character
     private Vector2 _inputMoveRaw;
     private float _playerRotation;
     private Vector2 _inputRotation;
 
+    // Used in rigidbody physics based movement, velocity, speed etc.
     [Header("Movement Speed Controls")]
     [SerializeField] float _movementSpeed;
     [SerializeField] float _maxSpeed;
     private Vector3 _desiredVelocity;
     
-
+    // Used in a function that returns if there is any input on the left stick
     private bool _isInput;
 
+    // Used in a function that allows the player to jump by adding a positive force on the Y axis to the rigid body.
     [Header("Jump Controls")]
     [SerializeField] float _jumpStrength;
     [SerializeField] float _maxJumpHeight;
     private bool _isGrounded = true;
     private bool _inputJump;
 
+    // Raycast Controls - used to check to see if the chracter is grounded
+    [Header("Raycast Controls")]
+    [SerializeField] GameObject _rcPos;
+    [SerializeField] LayerMask GroundLayer;
+    [SerializeField] float _rayDistance;
+
+
+
+
     public void OnMove(InputAction.CallbackContext MoveContext)
     {
+        // Gathers the move input when you interact with the left stick/keyboard and assigns it to a vector 2 variable with Z being Vertical, and X being Horizontal.
         _inputMoveRaw = MoveContext.ReadValue<Vector2>();
-        
     }
 
-    public void OnJump(InputAction.CallbackContext JumpContext)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        _inputJump = JumpContext.ReadValue<bool>();
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
+        Jump();
     }
 
     // Update is called once per frame
     public void Update()
 
-        
     {
         var rb = _playerRigidBody;
 
@@ -73,15 +78,13 @@ public class ScrPlayerController : MonoBehaviour
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, _maxSpeed);
         }
+
+        checkIsGrounded();
     }
 
     public void FixedUpdate()
     {
         move();
-
-        Jump();
-
-
 
     }
 
@@ -116,7 +119,7 @@ public class ScrPlayerController : MonoBehaviour
         var rb = _playerRigidBody;
         Vector3 _jumpForce = new Vector3(0, _jumpStrength, 0);
 
-        if (_isGrounded)
+        if (_isGrounded == true)
         {
             rb.AddForce(_jumpForce, ForceMode.VelocityChange);
         }
@@ -132,6 +135,25 @@ public class ScrPlayerController : MonoBehaviour
         else _isInput = true;
 
         return _isInput;
+    }
+
+    private bool checkIsGrounded()
+    {
+        var rcSpherePos = _rcPos.transform.position;
+
+
+        if (Physics.Raycast(rcSpherePos, Vector3.down, _rayDistance, GroundLayer))
+        {
+            Debug.Log("YOU ARE GROUNDED!!!");
+            Debug.DrawRay(rcSpherePos, Vector3.down, Color.yellow);
+
+            _isGrounded = true;
+        }
+
+        else _isGrounded= false;
+
+        return _isGrounded;
+        
     }
 
 }
